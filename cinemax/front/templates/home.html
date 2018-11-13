@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cinemax Uganda</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}"/>
+</head>
+<body>
+	<div class="header">
+		<div class="head"><h1>cinemax</h1></div>
+
+		<div class="nav-bar">
+			<a href="{{ url_for('home') }}">Home</a>
+		</div>
+	</div>
+
+	<div class="content">
+		<div class="left-content">
+			<div class="left">
+				<h1>your home of entertainment</h1>
+				<h2>today</h2>
+				{% if upcoming %}
+					<h3 id="mov"><a href="">{{ upcoming.title }}</a></h3>
+					<ol>
+						{% for show_hour in upcoming.show_period %}
+							<li><span id="start">{{ show_hour.start_time }}</span>:00pm - {{ show_hour.end_time }}:00pm
+							 	<a onclick="setLink()" href="{{ url_for('book', movie_link=show_hour.link) }}">book now</a></li>
+						{% endfor %}
+					</ol>
+				{% else %}
+					<h3><a>no upcoming movie</a></h3>
+				{% endif %}
+			</div>
+		</div>
+		<div class="right-content">
+			<h1>upcoming events</h1>
+			{% if movies %}
+			<ol>
+				{% for movie in movies %}
+					<li><a href="">{{ movie.title }} - {{ movie.show_date.day }}/{{movie.show_date.month}}
+					/{{movie.show_date.year}}</a></li>
+				{% endfor %}
+			</ol>
+			{% else %}
+				<p>No Upcoming Events</p>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="left-footer">
+			<h1>Address</h1>
+			<ul>
+				<li>Level 3,</li>
+				<li>Ham Towers,</li>
+				<li>Makerere Hill Road</li>
+			</ul>
+		</div>
+		<div class="right-footer">
+			<h1>Contact Us</h1>
+			<ul>
+				<li>+256 778469493, +256 708484534</li>
+				<li>management@cinemax.com</li>
+				<li>facebook/cinemaxug</li>
+				<li>twitter/cinemaxug</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

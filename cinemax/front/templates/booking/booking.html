@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cinemax Uganda</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/booking.css') }}"/>
+</head>
+<body onload="getServerData()">
+	<div class="header">
+		<div class="head"><h1>cinemax</h1></div>
+
+		<div class="nav-bar">
+			<a href="{{ url_for('home') }}">Home</a>
+		</div>
+	</div>
+
+	<div class="content">
+		<div class="left-chart">
+			<table width="90%" border="1px" cellspacing="0" id="chartTable">
+				<caption>sitting plan</caption>
+			</table>
+
+			<p>Number of seats available: <span class="variable">{{ seats_remained }}</span></p>
+			<p>Total Sales: Shs. <span class="variable">{{ total_sales }}</span></p>
+      <p id="to-hide">{{ movie_link }}</p>
+		</div>
+
+		<div class="right-content" id="rightContent">
+			<table id="playlist1" width="90%" border="1" cellspacing="0">
+				<caption>price for different seat category</caption>
+				<thead>
+					<tr>
+						<th scope="col">Seat</th>
+						<th scope="col">Price(Shs.)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Twin Seats</td>
+						<td>25,000</td>
+					</tr>
+					<tr class="alt">
+						<td>Very VIP</td>
+						<td>100,000</td>
+					</tr>
+					<tr>
+						<td>VIP</td>
+						<td>50,000</td>
+					</tr>
+					<tr class="alt">
+						<td>Economy</td>
+						<td>20,000</td>
+					</tr>
+				</tbody>
+			</table>
+
+        <div id="rightPane">
+
+				<div class="form-group" id="selectForm">
+
+          <div class="input1">
+					<label for="numSeats">Category of Seats: </label>
+					<select id="opt" name="category">
+						<option value="1">Twin Seats</option>
+						<option value="2">Very VIP</option>
+						<option value="3">VIP</option>
+						<option value="4">Economy</option>
+					</select>
+        </br>
+      </div>
+
+      <div class="input1">
+					<label for="category">Book or Reserve?: </label>
+					<select id="b_or_r">
+						<option value="1">Book</option>
+						<option value="2">Reserve</option>
+					</select>
+        </br>
+        </div>
+
+          <input type="button" onclick="checkSeats()" value="send"></input>
+				</div>
+
+        </div>
+
+      <form id="avaiableSeats" method="POST">
+        <h1 id=divHead class="ava"></h1>
+        <div id="side1" class="ava">
+        </div>
+
+        <div id="side2" class="ava">
+        </div>
+
+        <div id="side3" class="ava">
+        </div>
+
+        <div id="side4" class="ava">
+        </div>
+
+        <div id="submission" class="ava">
+          <div id="button1" class="ava">
+          </div>
+
+          <div id="cat"></div>
+          <div id="link"></div>
+
+          <div id="button2" class="ava">
+          </div>
+        </div>
+
+      </form>
+
+      <div id="confirmation">
+        <div id="buttonA">
+        </div>
+
+        <div id="buttonB">
+        </div>
+      </div>
+
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="left-footer">
+			<h1>Address</h1>
+			<ul>
+				<li>Level 3,</li>
+				<li>Ham Towers,</li>
+				<li>Makerere Hill Road</li>
+			</ul>
+		</div>
+		<div class="right-footer">
+			<h1>Contact Us</h1>
+			<ul>
+				<li>+256 778469493, +256 708484534</li>
+				<li>management@cinemax.com</li>
+				<li>facebook/cinemaxug</li>
+				<li>twitter/cinemaxug</li>
+			</ul>
+		</div>
+	</div>
+  <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+</body>
+</html>

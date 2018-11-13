@@ -1,0 +1,171 @@
+* {
+	margin: 0px;
+}
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.header {
+	width: 100%;
+	height: 100px;
+	background-color: #683535;
+	position: fixed;
+}
+
+.head h1 {
+	text-transform: uppercase;
+	margin-left: 60px;
+	margin-top: 55px;
+	color: #C5C2C2;
+	font-weight: normal;
+}
+
+.head {
+	width: 30%;
+	float: left;
+}
+
+.nav-bar {
+	width: 70%;
+	float: left;
+	margin-top: 70px;
+}
+
+.nav-bar a {
+	color: #CBE63C;
+	padding-left: 70px;
+}
+
+.content {
+	width: 100%;
+	min-height: 450px;
+	padding-top: 100px;
+}
+
+.left-content {
+	width: 70%;
+	float: left;
+	background-image: url(../images/avengers.jpg);
+	height: 500px;
+	width: 70%;
+}
+
+.left {
+	width: 100%;
+	float: left;
+	background-color: rgba(0,0,0,0.5);
+	height: 500px;
+	opacity: 47%;
+}
+
+.left h1, .left h2, .left h3 {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: normal;
+	padding: 25px;
+}
+
+.left h1 {
+	color: #C5C2C2;
+}
+
+.left h2 {
+	color: #C5C2C2;
+	font-size: 200%;
+}
+
+.left h3 a{
+	color: #F5BE26;
+	font-size: 120%;
+}
+
+.left li {
+	list-style: none;
+	margin-left: 280px;
+	text-align: left;
+	padding: 10px;
+	font-size: 110%;
+	color: #D2F60F
+}
+
+.left li a {
+	padding-left: 20px;
+	color: #C5C2C2;
+}
+
+.right-content {
+	width: 29%;
+	float: left;
+	min-height: 450px;
+	border-left: 1px solid #c9c9c9;
+}
+
+.right-content h1 {
+	text-transform: uppercase;
+	color: #053378;
+	font-size: 140%;
+	text-align: center;
+	font-weight: normal;
+	padding: 10px;
+}
+
+.right-content ol li a {
+	padding: 5px;
+	margin-left: 5px;
+	display: block;
+	font-size: 85%;
+	color: #555555;
+}
+
+.right-content p {
+	font-size: 120%;
+	text-align: center;
+	margin-top: 120px;
+	color: #555555;
+}
+
+.right-content p {
+	padding: 10px;
+}
+
+.right-content p a {
+	padding: 10px;
+	color: #053378;
+}
+
+.footer {
+	width: 100%;
+	height: 180px;
+}
+
+.left-footer {
+	width: 42%;
+	height: 100%;
+	float: left;
+	padding-left: 8%;
+	background-color: #241C1C;
+}
+
+.right-footer {
+	width: 50%;
+	height: 100%;
+	float: left;
+	background-color: #241C1C;
+}
+
+.left-footer li, .right-footer li {
+	list-style: none;
+	font-size: 85%;
+	margin-left: -40px;
+	padding-top: 5px;
+	color: #BEBFB7;
+}
+
+.left-footer h1, .right-footer h1 {
+	font-size: 100%;
+	font-weight: normal;
+	color: #CBE63C;
+	padding: 0 10px 10px 0;
+	padding-top: 15px;
+}
