@@ -1,3 +1,3 @@
 web: gunicorn cinemaxapp.wsgi
 
-web: gunicorn app:cinemax
+web: gunicorn main:cinemax
