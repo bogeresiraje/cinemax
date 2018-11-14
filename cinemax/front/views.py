@@ -17,23 +17,25 @@ def book(movie_link):
 	show_time = ShowTime.query.filter(ShowTime.link == movie_link).first()
 	total_sales = show_time.total_sales;
 	seats_remained = show_time.seats_remained;
+	twin, econ, vvip, vip = seat_prices()
 	return render_template('/booking/booking.html', movie_link=movie_link,
-		total_sales=total_sales, seats_remained=seats_remained)
+		total_sales=total_sales, seats_remained=seats_remained, twin=twin, econ=econ, vvip=vvip,vip=vip)
 
 @app.route('/booking/<movie_link>/<int:category>/<int:status>', methods=['GET', 'POST'])
 def book_seats(movie_link, category, status):
 	show_time = ShowTime.query.filter(ShowTime.link == movie_link).first()
 	keys = [key for key in request.form];
+	print(keys)
 
 	# twin seats and book
 	if category == 1 and status == 1:
 		positions = get_positions(keys,twin=True)
-		show_time.book(positions)
+		show_time.book(positions, twin=True)
 
 	# twin seats and reserved
 	if category == 1 and status == 2:
 		positions = get_positions(keys,twin=True)
-		show_time.reserve(positions)
+		show_time.reserve(positions, twin=True)
 
 	#vvip and book
 	if category == 2 and status == 1:
