@@ -23,7 +23,6 @@
 
 			<p>Number of seats available: <span class="variable">{{ seats_remained }}</span></p>
 			<p>Total Sales: Shs. <span class="variable">{{ total_sales }}</span></p>
-      <p id="to-hide">{{ movie_link }}</p>
 		</div>
 
 		<div class="right-content" id="rightContent">
@@ -38,19 +37,19 @@
 				<tbody>
 					<tr>
 						<td>Twin Seats</td>
-						<td>25,000</td>
+						<td>{{ twin }}</td>
 					</tr>
 					<tr class="alt">
 						<td>Very VIP</td>
-						<td>100,000</td>
+						<td>{{ vvip }}</td>
 					</tr>
 					<tr>
 						<td>VIP</td>
-						<td>50,000</td>
+						<td>{{ vip }}</td>
 					</tr>
 					<tr class="alt">
 						<td>Economy</td>
-						<td>20,000</td>
+						<td>{{ econ }}</td>
 					</tr>
 				</tbody>
 			</table>

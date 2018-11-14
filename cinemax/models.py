@@ -56,33 +56,61 @@ class ShowTime(db.Model):
 	def reset(self):
 		self.__init__()
 
-	def book(self, seats):
+	def book(self, seats, twin=False):
 		new_data = to_array(self.data)
-		for seat in seats:
-			if new_data[seat[0]][seat[1]] == '*':
-				new_data[seat[0]][seat[1]] = '#'
-				self.total_sales += self.price(seat)
-			elif new_data[seat[0]][seat[1]] == '#':
-				return "already booked"
-			else:
-				new_data[seat[0]][seat[1]] == 'fuck you'
+
+		if twin:
+			for pos in seats:
+				for seat in pos:
+					if new_data[seat[0]][seat[1]] == '*':
+						new_data[seat[0]][seat[1]] = '#'
+						self.total_sales += self.price(pos)
+						self.seats_remained -= 1
+					elif new_data[seat[0]][seat[1]] == '#':
+						print("already booked")
+					else:
+						new_data[seat[0]][seat[1]] == 'foo'
+		else:
+			for seat in seats:
+				if new_data[seat[0]][seat[1]] == '*':
+					new_data[seat[0]][seat[1]] = '#'
+					self.total_sales += self.price(seat)
+					self.seats_remained -= 1
+				elif new_data[seat[0]][seat[1]] == '#':
+					print("already booked")
+				else:
+					new_data[seat[0]][seat[1]] == 'foo'
+
 		self.data = new_data
-		self.seats_remained -= len(seats)
 
 
-	def reserve(self, seats):
+	def reserve(self, seats, twin=False):
 		new_data = to_array(self.data)
-		for seat in seats:
-			if new_data[seat[0]][seat[1]] == '*':
-				new_data[seat[0]][seat[1]] = 'o'
-			elif new_data[seat[0]][seat[1]] == 'o':
-				return "already booked"
-			else:
-				new_data[seat[0]][seat[1]] == 'fuck you'
-		self.data = new_data
-		self.seats_remained -= len(seats)
+		if twin:
+			for pos in seats:
+				for seat in pos:
+					if new_data[seat[0]][seat[1]] == '*':
+						new_data[seat[0]][seat[1]] = 'o'
+						self.seats_remained -= 1
 
-	def price(self, seat, twin=12500, vvip=100000, vip=50000, economy=20000):
+					elif new_data[seat[0]][seat[1]] == 'o':
+						print("already reserved")
+					else:
+						new_data[seat[0]][seat[1]] == 'foo'
+		else:
+			for seat in seats:
+				if new_data[seat[0]][seat[1]] == '*':
+					new_data[seat[0]][seat[1]] = 'o'
+					self.seats_remained -= 1
+
+				elif new_data[seat[0]][seat[1]] == '#':
+					print("already reserved")
+				else:
+					new_data[seat[0]][seat[1]] == 'foo'
+		self.data = new_data
+
+	def price(self, seat):
+		twin, economy, vvip, vip = seat_prices()
 		'''
 		twins_seats, vvip_seats, vip_seats, economy_seats = [], [], [], []
 		for x in range(1, 17):
@@ -115,10 +143,12 @@ class ShowTime(db.Model):
 	def available_twin(self):
 		new_data = to_array(self.data)
 		positions = get_twin()
-		available = [seat for seat in positions if new_data[seat[0]][seat[1]] == '*']
+		# available = [seat for seat in positions if new_data[seat[0]][seat[1]] == '*']
+		seats = [pos for pos in positions if new_data[pos[0][0]][pos[0][1]] == '*']
+		print(seats)
 		seat_keys = twin_seats()
 		keys = seat_keys.keys()
-		return [key for key in keys  if seat_keys[key] in available]
+		return [key for key in keys  if seat_keys[key] in seats]
 
 	def available_vvip(self):
 		new_data = to_array(self.data)

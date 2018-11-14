@@ -31,7 +31,13 @@ def get_vvip():
 
 # returns the siiting positions of the twin seats
 def get_twin():
-    return [(i, j) for i in range(2) for j in range(20) if(j > 3 and j < 15)]
+    twin = list()
+    for i in range(2):
+        for j in range(0, 20, 2):
+            if(j > 3 and j < 14):
+                twin.append([(i,j), (i, j + 1)])
+
+    return twin
 
 def get_vip():
     return [(i, j) for i in range(6, 12) for j in range(20)]
@@ -48,8 +54,8 @@ def columns():
         18, 19, 20]
 
 def twin_seats():
-    twin_keys = ['A5','A6','A7','A8','A9','A10','A11','A12','A13','A14','A15',
-        'B5','B6','B7','B8','B9','B10','B11','B12','B13','B14','B15']
+    twin_keys = ['A5&A6','A7&A8','A9&A10','A11&A12','A13&A14',
+        'B5&B6','B7&B8','B9&B10','B11&B12','B13&B14']
     twin = get_twin()
     return dict(zip(twin_keys, twin))
 
@@ -99,6 +105,7 @@ def get_positions(keys, twin=False, vvip=False, vip=False, economy=False):
     if twin:
         twins = twin_seats()
         twin_pos = [twins[key] for key in keys]
+        print(twin_pos)
         return twin_pos
 
     elif vvip:
@@ -112,3 +119,16 @@ def get_positions(keys, twin=False, vvip=False, vip=False, economy=False):
     elif economy:
         econ = economy_seats()
         return [econ[key] for key in keys]
+
+def seat_prices():
+    f = open("cinemax/app_dir/prices.txt")
+    f = f.read()
+    f = f.replace("economy:", "")
+    f = f.replace("vvip:", "")
+    f = f.replace("vip:", "")
+    f = f.replace("twin:", "")
+    f = f.split("\n")
+    twin, econ, vvip, vip, nan = f
+    lis = [twin, econ, vvip, vip]
+    lis = [int(value) for value in lis]
+    return lis
